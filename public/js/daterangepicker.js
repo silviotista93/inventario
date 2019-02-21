@@ -41,7 +41,7 @@ const getRanges =function (){
     }
 }
 const getDate = function (type){
-    data = [moment("0000-00-00"), moment()];
+    data = [moment().subtract(1, 'year'), moment()];
     switch(type){
         case "hoy":
             data = [moment(), moment()]
