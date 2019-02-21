@@ -401,7 +401,7 @@
     <script>
         function obtenerClase(id) {
             var info = 'btn-primary';
-            var all = document.querySelectorAll('.quitarSeguro');
+            var all = document.querySelectorAll('.quitarProducto');
             all.forEach(function (e) {
                 if (e.value === id) {
                     info = 'btn-default';
