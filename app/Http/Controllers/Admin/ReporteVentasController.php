@@ -26,9 +26,9 @@ class ReporteVentasController extends Controller
             ->orderBy('a', 'desc')
             ->limit(10)
             ->get();
-
+        $total = Producto::selectRaw("sum(ventas) as total")->first()->total;
         $productos = $this->showProducts();
-        return view('admin.ventas.reportes-ventas', compact("compradores", "vendedores", "productos"));
+        return view('admin.ventas.reportes-ventas', compact("compradores", "vendedores", "productos", "total"));
     }
 
     public function showVentas(Request $request)

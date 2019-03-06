@@ -78,13 +78,12 @@
                 <!-- /.box-body -->
                 <div class="box-footer no-padding grafica--data">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">United States of America
-                                <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-                        <li><a href="#">India <span class="pull-right text-green"><i
-                                            class="fa fa-angle-up"></i> 4%</span></a>
-                        </li>
-                        <li><a href="#">China
-                                <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
+                        @php
+                        for ($i = 0; ($i<5 && $i<count($productos)); $i++){
+                            echo "<li><a href=\"#\">{$productos[$i]->label}
+                                <span class=\"pull-right\" style='color: {$productos[$i]->highlight};'><i class=\"fa fa-angle-down\"></i> ".ceil((($productos[$i]->value)*100)/$total)."%</span></a></li>";
+                        }
+                        @endphp
                     </ul>
                 </div>
                 <!-- /.footer -->
