@@ -23,7 +23,7 @@ class CreateProductosTable extends Migration
             $table->integer('stock');
             $table->double('precio_compra');
             $table->double('precio_venta');
-            $table->string('ventas')->nullable();
+            $table->unsignedBigInteger('ventas')->nullable();
             $table->timestamps();
         });
     }

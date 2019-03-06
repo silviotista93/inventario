@@ -60,12 +60,15 @@
                         <!-- /.col -->
                         <div class="col-md-4">
                             <ul class="chart-legend clearfix">
-                                <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                                <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                                <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                                <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                                <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                                <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                                @php
+                                    foreach ($productos as $producto) {
+                                        $name = substr($producto->label, 0, 15);
+                                        if (strlen($producto->label)>15){
+                                            $name .= "...";
+                                        }
+                                        echo "<li title=\"{$producto->label}\"><i class=\"fa fa-circle-o\" style=\"color:{$producto->color};\"></i>{$name}</li>";
+                                    }
+                                @endphp
                             </ul>
                         </div>
                         <!-- /.col -->
@@ -209,44 +212,7 @@
         // Get context with jQuery - using jQuery's .get() method.
         var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
         var pieChart = new Chart(pieChartCanvas);
-        var PieData = [
-            {
-                value: 700,
-                color: "#f56954",
-                highlight: "#f56954",
-                label: "Chrome"
-            },
-            {
-                value: 500,
-                color: "#00a65a",
-                highlight: "#00a65a",
-                label: "IE"
-            },
-            {
-                value: 400,
-                color: "#f39c12",
-                highlight: "#f39c12",
-                label: "FireFox"
-            },
-            {
-                value: 600,
-                color: "#00c0ef",
-                highlight: "#00c0ef",
-                label: "Safari"
-            },
-            {
-                value: 300,
-                color: "#3c8dbc",
-                highlight: "#3c8dbc",
-                label: "Opera"
-            },
-            {
-                value: 100,
-                color: "#d2d6de",
-                highlight: "#d2d6de",
-                label: "Navigator"
-            }
-        ];
+        var PieData = {!! json_encode($productos) !!};
         var pieOptions = {
             //Boolean - Whether we should show a stroke on each segment
             segmentShowStroke: true,
@@ -271,7 +237,7 @@
             //String - A legend template
             legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
     //String - A tooltip template
-    tooltipTemplate: "<%=value %> <%=label%> users"
+    tooltipTemplate: "<%=value%> - <%=label%>"
   };
   pieChart.Doughnut(PieData, pieOptions);
 
