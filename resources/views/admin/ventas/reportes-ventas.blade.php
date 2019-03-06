@@ -35,7 +35,7 @@
                         </div>
                         <div class="box-body border-radius-none nuevoGraficoVentas" id="registroVentas">
                             <div class="chart grafica" id="line-chart-ventas" style="height: 250px;"></div>
-                            <p class="txtNoRegistro">No hay registros...</p>
+                            <p class="txtNoRegistro" style="color: inherit;">No hay registros...</p>
                         </div>
                     </div>
                 </div>
